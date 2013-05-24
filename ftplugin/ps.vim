@@ -36,14 +36,34 @@ endif
 function! s:KillLine()
     let l:line = getline(".")
     let l:str = matchstr(l:line, g:PS_RegExRule, 0)
-    let l:cmd = g:PS_KillCmd . " " . l:str
+    call s:KillProcess(l:str)
+endfunction
+
+function! s:KillAllLines() range
+    let l:start = line("'<")
+    let l:end = line("'>")
+    let l:lines = getline(l:start, l:end)
+    for l:l in l:lines
+        let l:str = matchstr(l:l, g:PS_RegExRule, 0)
+        call s:KillProcess(l:str)
+    endfor
+endfunction
+
+function! s:KillWord()
+    normal yiw
+    call s:KillProcess(@")
+endfunction
+
+function! s:KillProcess(num)
+    let l:cmd = g:PS_KillCmd . " " . a:num
     let l:res = system(l:cmd)
     if v:shell_error != 0
         echo "ERROR: command execution failed.: " . l:cmd
         return
     endif
     echo l:res
-    echo "Process " . l:str . " has been killed."
+    echo "Process " . a:num . " has been killed."
+    call s:Refresh()
 endfunction
 
 function! s:Refresh()
@@ -56,7 +76,8 @@ endfunction
 function! s:Init()
     nnoremap <buffer> r :PsRefresh<CR>
     nnoremap <buffer> <C-K> :PsKillLine<CR>
-    nnoremap <buffer> K yiw<CR>:exec "!<C-R>=g:PS_KillCmd<CR> <C-R>""<CR>
+    vnoremap <buffer> <C-K> :PsKillAllLines<CR>
+    nnoremap <buffer> K :PsKillWord<CR>
     nnoremap <buffer> q :q!<CR>
 
     exec "set buftype=nofile"
@@ -67,3 +88,5 @@ call s:Init()
 
 command! -nargs=0 PsRefresh :call s:Refresh()
 command! -nargs=0 PsKillLine :call s:KillLine()
+command! -nargs=0 -range PsKillAllLines :call s:KillAllLines()
+command! -nargs=0 PsKillWord :call s:KillWord()
