@@ -56,7 +56,7 @@ endfunction
 function! s:Init()
     nnoremap <buffer> r :PsRefresh<CR>
     nnoremap <buffer> <C-K> :PsKillLine<CR>
-    nnoremap <buffer> K :PsKillLine<CR>
+    nnoremap <buffer> K yiw<CR>:exec "!<C-R>=g:PS_KillCmd<CR> <C-R>""<CR>
     nnoremap <buffer> q :q!<CR>
 
     exec "set buftype=nofile"
