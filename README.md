@@ -6,7 +6,7 @@ What is this?
 **ps.vim** is a vim filetype plugin to add *ps mode*.
 *ps mode* is a mode to view the result of *ps command* which shows you process list.
 From *ps mode* buffer, you can rerun *ps command* and kill a process. 
-** This ps mode is NOT post script file mode.**
+**This ps mode is NOT post script file mode.**
 
 Requirement
 ------
