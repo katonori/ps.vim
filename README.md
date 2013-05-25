@@ -52,7 +52,7 @@ Variables
 | ------------------- | ----------------- | ----------- |
 |PS_PsCmd  | "ps aux"            | Specify the ps command. |
 |PS_KillCmd  | "kill -9"            | Specify the kill command. |
-|PS_RegExRule  | '^\w\+\s\+\zs\d\+\ze'       | Specify the reguler expression rule to get the process ID from line. The default value assumes the PID is at the second column.|
+|PS_RegExRule  | '\w\+\s\+\zs\d\+\ze'       | Specify the reguler expression rule to get the process ID from line. The default value assumes the PID is at the second column.|
 
 This script can be configured by changing these variables. Use *let* command to set value to these variables like below.
 
