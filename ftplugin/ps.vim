@@ -61,9 +61,9 @@ function! s:KillProcess(num)
         echo "ERROR: command execution failed.: " . l:cmd
         return
     endif
+    silent call s:Refresh()
     echo l:res
     echo "Process " . a:num . " has been killed."
-    call s:Refresh()
 endfunction
 
 function! s:Refresh()
@@ -74,11 +74,11 @@ function! s:Refresh()
 endfunction
 
 function! s:Init()
-    nnoremap <buffer> r :PsRefresh<CR>
-    nnoremap <buffer> <C-K> :PsKillLine<CR>
-    vnoremap <buffer> <C-K> :PsKillAllLines<CR>
-    nnoremap <buffer> K :PsKillWord<CR>
-    nnoremap <buffer> q :q!<CR>
+    nnoremap <buffer> <silent> r :PsRefresh<CR>
+    nnoremap <buffer> <silent> <C-K> :PsKillLine<CR>
+    vnoremap <buffer> <silent> <C-K> :PsKillAllLines<CR>
+    nnoremap <buffer> <silent> K :PsKillWord<CR>
+    nnoremap <buffer> <silent> q :q!<CR>
 
     exec "set buftype=nofile"
     exec "source $VIMRUNTIME/syntax/sh.vim"
