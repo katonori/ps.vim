@@ -69,7 +69,7 @@ endfunction
 function! s:Refresh()
     let l:line = line(".")
     exec "%delete"
-    exec "read !" . g:PS_PsCmd
+    exec "0read !" . g:PS_PsCmd
     exec ":" . l:line
 endfunction
 
