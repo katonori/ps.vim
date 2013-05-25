@@ -35,7 +35,7 @@ Commands
 ------
 |Name              | Description |
 | ---------------- | ------------------- |
-|PS  | Open new buffer and run *ps command* and run in *ps mode*. |
+|PS  | Open new buffer and run *ps command* and enter *ps mode*. |
 |PsRefresh   | Rerun *ps command* and update the current buffer.|
 |PsKillWord  | Kill process that PID is the word under the cursor.|
 |PsKillLine  | Kill process shown in the line under the cursor. You need to set the variable *g:PS_RegExRule* corretly. |
