@@ -40,6 +40,7 @@ Commands
 |PsKillWord  | Kill process that PID is the word under the cursor.|
 |PsKillLine  | Kill process shown in the line under the cursor. You need to set the variable *g:PS_RegExRule* corretly. |
 |PsKillAllLines  | Kill all the process shown in the selected region. You need to set the variable *g:PS_RegExRule* corretly. |
+|PsOpenProcLine | Open /proc file system of the process under the cursor. |
 
 Default key maps
 ------
@@ -51,6 +52,7 @@ Default key maps
 |r   | PsRefresh    |
 |K   | PsKillWord     |
 |\<C-K\>   | PsKillLine     |
+|p   | PsOpenProcLine |
 |q   | Close buffer(:q!).|
 
 ### Visual mode
@@ -65,9 +67,9 @@ Variables
 
 |Name                 | Default value     | Description |
 | ------------------- | ----------------- | ----------- |
-|PS_PsCmd  | "ps aux"            | Specify the ps command. |
-|PS_KillCmd  | "kill -9"            | Specify the kill command. |
-|PS_RegExRule  | '\w\+\s\+\zs\d\+\ze'       | Specify the reguler expression rule to get the process ID from line. The default value assumes the PID is at the second column.|
+|PS\_PsCmd  | "ps aux"            | Specify the ps command. |
+|PS\_KillCmd  | "kill -9"            | Specify the kill command. |
+|PS\_RegExRule  | '\w\+\s\+\zs\d\+\ze'       | Specify the reguler expression rule to get the process ID from line. The default value assumes the PID is at the second column.|
 
 This script can be configured by changing these variables. Use *let* command to set value to these variables like below.
 
