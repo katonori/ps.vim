@@ -33,6 +33,22 @@ if !exists("g:PS_RegExRule")
     let g:PS_RegExRule = '\w\+\s\+\zs\d\+\ze'
 endif
 
+function! s:OpenProcLine()
+    let l:line = getline(".")
+    let l:str = matchstr(l:line, g:PS_RegExRule, 0)
+    call s:OpenProc(l:str)
+endfunction
+
+function! s:OpenProc(str)
+    let l:dir = "/proc/" . a:str
+    if a:str != "" && isdirectory(l:dir)
+        bel vnew
+        exec "e " . l:dir
+    else
+        echo "ERROR: " . l:dir  . " is not found"
+    endif
+endfunction
+
 function! s:KillLine()
     let l:line = getline(".")
     let l:str = matchstr(l:line, g:PS_RegExRule, 0)
@@ -77,6 +93,7 @@ function! s:Init()
     nnoremap <buffer> <silent> r :PsRefresh<CR>
     nnoremap <buffer> <silent> <C-K> :PsKillLine<CR>
     vnoremap <buffer> <silent> <C-K> :PsKillAllLines<CR>
+    nnoremap <buffer> <silent> p :PsOpenProcLine<CR>
     nnoremap <buffer> <silent> K :PsKillWord<CR>
     nnoremap <buffer> <silent> q :q!<CR>
 
@@ -90,3 +107,4 @@ command! -nargs=0 PsRefresh :call s:Refresh()
 command! -nargs=0 PsKillLine :call s:KillLine()
 command! -nargs=0 -range PsKillAllLines :call s:KillAllLines()
 command! -nargs=0 PsKillWord :call s:KillWord()
+command! -nargs=0 PsOpenProcLine :call s:OpenProcLine()
