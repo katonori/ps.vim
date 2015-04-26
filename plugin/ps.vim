@@ -106,4 +106,5 @@ command! -nargs=0 PsKillLine :call s:KillLine()
 command! -nargs=0 -range PsKillAllLines :call s:KillAllLines()
 command! -nargs=0 PsKillWord :call s:KillWord()
 command! -nargs=0 PsOpenProcLine :call s:OpenProcLine()
-command! -nargs=0 PS :new | :set filetype=ps | :call s:Init() | :PsRefresh
+command! -nargs=0 PsThisBuffer :set filetype=ps | :call s:Init() | :PsRefresh
+command! -nargs=0 PS :new | :PsThisBuffer
